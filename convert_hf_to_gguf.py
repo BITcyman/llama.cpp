@@ -1888,6 +1888,12 @@ class Qwen2Model(Model):
         except FileNotFoundError:
             self._set_vocab_gpt2()
 
+@Model.register("Qwen2VLModel")
+class Qwen2VLModel(Model):
+    model_arch = gguf.MODEL_ARCH.QWEN2VL
+
+    
+
 
 @Model.register("Qwen2MoeForCausalLM")
 class Qwen2MoeModel(Model):
@@ -4036,7 +4042,7 @@ def parse_args() -> argparse.Namespace:
         help="model is executed on big endian machine",
     )
     parser.add_argument(
-        "model", type=Path,
+        "model", type=Path, default=None,
         help="directory containing model file",
     )
     parser.add_argument(
